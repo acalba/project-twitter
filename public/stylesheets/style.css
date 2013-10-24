@@ -9,3 +9,8 @@ a {
 .name {
   height: 50px;
 }
+
+input {
+  height: 30px;
+  font-size: 14px !important;
+}

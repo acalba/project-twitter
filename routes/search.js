@@ -1,3 +1,3 @@
 exports.search = function(req, res){
-  res.render('search', { title: 'Search Twitter' });
+  res.render('search');
 };
