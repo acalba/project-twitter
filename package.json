@@ -1,12 +1,12 @@
 {
   "name": "hackathon",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.0.7",
+  "description": "A typing game integrated with Twitter API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jonathan Yee, Aileen Alba, Richard The",
   "license": "BSD-2-Clause",
   "dependencies": {
     "twit": "~1.1.11"
