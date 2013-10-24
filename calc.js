@@ -1,6 +1,0 @@
-function calculateScore(length, speed, accuracy)
-{
-	var score = (length / 140 * 250) + (2 * speed) + (accuracy * 250);
-	alert("Your score is " + score + "!\nTweet Length: " + length + " characters\nYour typing speed: " + speed + " wpm\nAccuracy: " + accuracy);
-	return score;
-}
