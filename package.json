@@ -1,14 +1,13 @@
 {
-  "name": "hackathon",
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
-  "author": "",
-  "license": "BSD-2-Clause",
   "dependencies": {
-    "twit": "~1.1.11"
+    "express": "3.3.4",
+    "jade": "*",
+    "express3-handlebars": "~0.5.0"
   }
 }
