@@ -57,7 +57,6 @@ app.get('/scores', function (req, res) {
     if (err) throw err;
 
     connection.end();
-    console.log(result)
     res.render('scores', { scores : result});
   });
 
