@@ -69,11 +69,11 @@ app.post('/search', function (req, res) {
 
   var statuses = [];
 
-  T.get('search/tweets', { q: req.body.search + ' since:2013-01-01', count: 30, language: 'en'}, function(err, tweet) {
+  T.get('search/tweets', { q: req.body.search + ' since:2013-01-01', count: 10, language: 'en'}, function(err, tweet) {
     var list = tweet.statuses;
     for (var i = 0; i < list.length; i++) {
-      statuses[i] = {text: list[i].text.replace(/^[\u0-\u7f]*$/, "")};
-      // console.log(statuses[i]);
+      statuses[i] = {text: list[i].text.match(/[a-zA-Z0-9,.<>\\?!@#$%^&*()-=_+ "':;{}\[\]]*/, "")};
+      console.log(list[i].text);
     }
 
     res.render('search', {tweets: statuses});
