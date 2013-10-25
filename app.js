@@ -42,6 +42,7 @@ if ('development' == app.get('env')) {
 app.get('/', function (req, res) {
     res.render('home');
 });
+
 app.use(express.bodyParser());
 
 app.post('/search', function (req, res) {
