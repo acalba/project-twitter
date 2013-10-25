@@ -73,11 +73,8 @@ app.post('/search', function (req, res) {
     var list = tweet.statuses;
     for (var i = 0; i < list.length; i++) {
       var text = list[i].text.match(/[a-zA-Z0-9,.<>\\?!@#$%^&*()-=_+ "':;{}\[\]]*/, "");
-      text.replace(/(http|https)(://\w+\.\w+)(\.\w+)*(/\w+)*/, "");
-      if (text.length > 15) {
         statuses[i] = {text: text};
         console.log(list[i].text);
-      }
     }
 
     res.render('search', {tweets: statuses});
