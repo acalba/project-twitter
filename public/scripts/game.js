@@ -45,7 +45,7 @@ $(function() {
     $game.hide();
     $countdown.show();
     $countdown.text(time);
-    $game.find("h1").text("Round " + roundNumber);
+    $game.find("h2.page-header").text("Round " + roundNumber);
     $footer.hide()
     $typingArea.val("");
     $tweetText = $($(".twitter-text")[roundNumber]).text();
@@ -78,7 +78,6 @@ $(function() {
               // console.log("nay " + $tweetText.charAt(i));
               count_errors += 1;
               $(".char" + (i + 1)).addClass("red");
-              // console.log(count_errors);
               break;
             }
           }
@@ -105,7 +104,7 @@ $(function() {
             console.log("# of Errors: " + count_errors);
             console.log("Total Score: " + final_score);
 
-            roundNumber++;
+            roundNumber += 1;
             startRound(roundNumber);
             // highlightLine(roundNumber);
           }
