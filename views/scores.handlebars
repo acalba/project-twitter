@@ -8,12 +8,18 @@
     <th>Rank</th>
     <th>Name</th>
     <th>Score</th>
+    <th>Speed</th>
+    <th>Errors</th>
+    <th>Tweet</th>
     </tr>
     {{#each scores}}
       <tr>
         <td>{{@index}}</td>
         <td>{{name}}</td>
         <td>{{score}}</td>
+        <td>{{speed}}</td>
+        <td>{{accuracy}}</td>
+        <td>{{tweet}}</td>
       </tr>
     {{/each}}
   </table>
