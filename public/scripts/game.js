@@ -50,6 +50,7 @@ $(function() {
     $typingArea.val("");
     $tweetText = $($(".twitter-text")[roundNumber]).text();
     $($(".twitter-text")[roundNumber]).lettering();
+    var count_errors = 0;
 
     var timer = self.setInterval(function() {
       if (time > 0) {
@@ -74,7 +75,9 @@ $(function() {
               // console.log("yay " + $tweetText.charAt(i));
               $(".char" + (i + 1)).addClass("yellow");
             } else {
-              console.log("nay " + $tweetText.charAt(i));
+              // console.log("nay " + $tweetText.charAt(i));
+              count_errors += 1;
+              // console.log(count_errors);
               break;
             }
           }
@@ -84,18 +87,17 @@ $(function() {
             console.log("true!");
             
             // calculate wpm
-            game_timer_stop = new Date().getTime();
-            game_timer = (game_timer_stop - game_timer_start) / 1000;
-            words = $tweetText.split(' ').length;
-            wpm = words / (game_timer / 60);
+            var game_timer_stop = new Date().getTime();
+            var game_timer = (game_timer_stop - game_timer_start) / 1000;
+            var words = $tweetText.split(' ').length;
+            var wpm = words / (game_timer / 60);
 
             // calculate total score
-            tweet_length = $tweetText.length;
-            count_errors = 5;
+            var tweet_length = $tweetText.length;
 
             final_score = calculateScore(tweet_length, wpm, count_errors);
 
-            insertScore(name, roundNumber, final_score, wpm, count_errors, $tweetText);
+            // insertScore(name, roundNumber, final_score, wpm, count_errors, $tweetText);
 
             console.log("Time: " + game_timer + " seconds.\nTyping Speed: " + wpm + " wpm");
             console.log("Tweet Length: " + tweet_length);
