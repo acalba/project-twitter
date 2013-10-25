@@ -114,7 +114,7 @@ $(function() {
             console.log("# of Errors: " + count_errors);
             console.log("Total Score: " + final_score);
 
-            $(".user-scores ul").append($("<li>Round: " + roundNumber + "\tScore: " + final_score + "</li>"));
+            $(".scores-tally ul").append($("<li>Round: " + roundNumber + "\tScore: " + final_score + "</li>"));
 
             roundNumber += 1;
 

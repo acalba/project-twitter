@@ -71,3 +71,6 @@ input {
 .help-text{
   margin-bottom: 20px;
 }
+.scores-tally ul{
+  list-style: none;
+}
