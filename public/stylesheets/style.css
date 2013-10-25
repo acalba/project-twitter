@@ -74,3 +74,18 @@ input {
 .scores-tally ul{
   list-style: none;
 }
+.twitter-user{
+  position: relative;
+  padding: 15px;
+  margin: 5px 0 0.5em;
+  color: #333;
+  background: #eee;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.twitter-user a{
+  float: right;
+  margin-top: -20px;
+  text-decoration: none;
+}
