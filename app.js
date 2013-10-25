@@ -101,25 +101,35 @@ app.post('/search', function (req, res) {
     var list = tweet.statuses;
     for (var i = 0; i < list.length; i++) {
 
-      console.log("ORIGINAL: " + list[i].text);
+      // console.log("ORIGINAL: " + list[i].text);
 
       var text = list[i].text.match(/[a-zA-Z0-9,.<>\\?!@#$%^&*()-=_+ "':;{}\[\]]*/, "");
       if (text !== undefined) {
-        text = text.toString().replace(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi, "");  
+        text = text.toString().replace(/(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/, "");  
       } else {
         break;
       }
       
       text = text.toString().replace(/^\s+|\s+$/g, "");
 
-      console.log("WITHOUT WEIRD: " + text);
+      // console.log("WITHOUT WEIRD: " + text);
 
       if (text !== undefined && text.length > 10) {
         statuses[i] = {text: text};
-        console.log("added " + text);
+       
+      }
+      if (statuses[i] === undefined || statuses[i].length > 10) {
+        statuses.splice(i,1);
       }
     }
 
+    for (var i = 0; i < list.length; i++) {
+      if (statuses[i] === undefined || statuses[i].length > 10) {
+        statuses.splice(i,1);
+      }
+    }
+
+    console.log(statuses);
     res.render('search', {tweets: statuses, name: req.body.user_name});
   });
 
