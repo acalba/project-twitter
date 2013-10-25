@@ -11,6 +11,10 @@ $(function() {
   {
     var score = (length / 140 * 250) + (2 * speed) - (0.5 * count_errors);
     alert("Your score is " + Math.ceil(score) + "!\nTweet Length: " + length + " characters\nYour typing speed: " + speed + " wpm\nWrong characters typed: " + count_errors + " characters");
+    if (score < 0)
+    {
+      score = 0; // avoid negative score due to typing errors
+    }
     return score;
   }
 
