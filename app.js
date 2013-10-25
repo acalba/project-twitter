@@ -71,7 +71,14 @@ app.post('/search', function (req, res) {
   T.get('search/tweets', { q: req.body.search + ' since:2013-01-01', count: 10, language: 'en'}, function(err, tweet) {
     var list = tweet.statuses;
     for (var i = 0; i < list.length; i++) {
+
+      console.log("ORIGINAL\n" + list[i].text);
+
       var text = list[i].text.match(/[a-zA-Z0-9,.<>\\?!@#$%^&*()-=_+ "':;{}\[\]]*/, "");
+      text = text.toString().replace(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi, "");
+
+      console.log("WITHOUT WEIRD\n" + text);
+
         statuses[i] = {text: text};
         console.log(list[i].text);
     }
