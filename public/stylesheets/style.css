@@ -50,3 +50,11 @@ input {
   color: green;
   font-weight: bold;
 }
+
+.yellow {
+  background-color: yellow;
+}
+
+.red {
+  background-color: red;
+}
