@@ -50,6 +50,15 @@ input {
   color: green;
   font-weight: bold;
 }
+
 #countdown h1{
   font-size: 125px;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.red {
+  background-color: red;
 }
