@@ -99,16 +99,22 @@ app.post('/search', function (req, res) {
     var list = tweet.statuses;
     for (var i = 0; i < list.length; i++) {
 
-      console.log("ORIGINAL\n" + list[i].text);
+      console.log("ORIGINAL: " + list[i].text);
 
       var text = list[i].text.match(/[a-zA-Z0-9,.<>\\?!@#$%^&*()-=_+ "':;{}\[\]]*/, "");
-      text = text.toString().replace(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi, "");
-      text.trim();
+      if (text !== undefined) {
+        text = text.toString().replace(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi, "");  
+      } else {
+        break;
+      }
+      
+      // text = text.toString().replace(/^\s+|\s+$/g, "");
 
-      console.log("WITHOUT WEIRD\n" + text);
+      console.log("WITHOUT WEIRD: " + text);
 
-      if (text.length > 10) {
+      if (text !== undefined && text.length > 10) {
         statuses[i] = {text: text};
+        console.log("added " + text);
       }
     }
 
