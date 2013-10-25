@@ -1,8 +1,9 @@
 $(function() {
-  var $countdown = $("#countdown h2");
-  var $game = $("#game");
-  var $tweetList = $game.find("ul li");
-  var $typingArea = $("#typingArea");
+  var $countdown = $("#countdown h2"),
+    $game = $("#game"),
+    $tweetList = $game.find("ul li"),
+    $typingArea = $("#typingArea"),
+    $footer = $('.footer');
   var roundNumber = 1;
 
   function startRound(roundNumber) {
@@ -11,6 +12,8 @@ $(function() {
     $countdown.show();
     $countdown.text(time);
     $game.find("h2").text("Round " + roundNumber);
+    $footer.hide()
+    $typingArea.val("");
 
     var timer = self.setInterval(function() {
       if (time > 0) {
@@ -20,6 +23,7 @@ $(function() {
         clearInterval(timer);
         $countdown.hide();
         $game.show();
+        $footer.show()
         highlightLine(roundNumber);
 
         $typingArea.keyup(function() {
