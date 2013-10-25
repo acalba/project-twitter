@@ -49,7 +49,7 @@ app.post('/search', function (req, res) {
 
   var statuses = [];
 
-  T.get('search/tweets', { q: req.body.search + ' since:2013-01-01', count: 30}, function(err, tweet) {
+  T.get('search/tweets', { q: req.body.search + ' since:2013-01-01', count: 30, language: 'en'}, function(err, tweet) {
     var list = tweet.statuses;
     for (var i = 0; i < list.length; i++) {
       statuses[i] = {text: list[i].text.replace(/^[\u0-\u7f]*$/, "")};
