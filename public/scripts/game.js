@@ -73,10 +73,11 @@ $(function() {
           for (var i = 0; i < $tweetText.length, i < $(this).val().length; i++) {
             if ($(this).val().charAt(i) === $tweetText.charAt(i)) {
               // console.log("yay " + $tweetText.charAt(i));
-              $(".char" + (i + 1)).addClass("yellow");
+              $(".char" + (i + 1)).addClass("yellow").removeClass("red");
             } else {
               // console.log("nay " + $tweetText.charAt(i));
               count_errors += 1;
+              $(".char" + (i + 1)).addClass("red");
               // console.log(count_errors);
               break;
             }
