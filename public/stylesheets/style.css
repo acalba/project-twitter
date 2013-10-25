@@ -67,3 +67,10 @@ input {
   margin-top: 15px;
   margin-bottom: 25px;
 }
+
+.help-text{
+  margin-bottom: 20px;
+}
+.scores-tally ul{
+  list-style: none;
+}
