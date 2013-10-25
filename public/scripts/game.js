@@ -54,11 +54,12 @@ $(function() {
     $game.hide();
     $countdown.show();
     $countdown.text(time);
-    $game.find("h1").text("Round " + roundNumber);
+    $game.find("h2.page-header").text("Round " + roundNumber);
     $footer.hide()
     $typingArea.val("");
     $tweetText = $($(".twitter-text")[roundNumber]).text();
     $($(".twitter-text")[roundNumber]).lettering();
+    var count_errors = 0;
 
     var timer = self.setInterval(function() {
       if (time > 0) {
@@ -81,9 +82,11 @@ $(function() {
           for (var i = 0; i < $tweetText.length, i < $(this).val().length; i++) {
             if ($(this).val().charAt(i) === $tweetText.charAt(i)) {
               // console.log("yay " + $tweetText.charAt(i));
-              $(".char" + (i + 1)).addClass("yellow");
+              $(".char" + (i + 1)).addClass("yellow").removeClass("red");
             } else {
-              console.log("nay " + $tweetText.charAt(i));
+              // console.log("nay " + $tweetText.charAt(i));
+              count_errors += 1;
+              $(".char" + (i + 1)).addClass("red");
               break;
             }
           }
@@ -93,25 +96,24 @@ $(function() {
             console.log("true!");
 
             // calculate wpm
-            game_timer_stop = new Date().getTime();
-            game_timer = (game_timer_stop - game_timer_start) / 1000;
-            words = $tweetText.split(' ').length;
-            wpm = words / (game_timer / 60);
+            var game_timer_stop = new Date().getTime();
+            var game_timer = (game_timer_stop - game_timer_start) / 1000;
+            var words = $tweetText.split(' ').length;
+            var wpm = words / (game_timer / 60);
 
             // calculate total score
-            tweet_length = $tweetText.length;
-            count_errors = 5;
+            var tweet_length = $tweetText.length;
 
             final_score = calculateScore(tweet_length, wpm, count_errors);
 
-            insertScore(name, roundNumber, final_score, wpm, count_errors, $tweetText);
+            // insertScore(name, roundNumber, final_score, wpm, count_errors, $tweetText);
 
             console.log("Time: " + game_timer + " seconds.\nTyping Speed: " + wpm + " wpm");
             console.log("Tweet Length: " + tweet_length);
             console.log("# of Errors: " + count_errors);
             console.log("Total Score: " + final_score);
 
-            roundNumber++;
+            roundNumber += 1;
             startRound(roundNumber);
             // highlightLine(roundNumber);
           }
