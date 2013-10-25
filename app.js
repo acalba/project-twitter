@@ -76,11 +76,13 @@ app.post('/search', function (req, res) {
 
       var text = list[i].text.match(/[a-zA-Z0-9,.<>\\?!@#$%^&*()-=_+ "':;{}\[\]]*/, "");
       text = text.toString().replace(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi, "");
+      text.trim();
 
       console.log("WITHOUT WEIRD\n" + text);
 
+      if (text.length > 10) {
         statuses[i] = {text: text};
-        console.log(list[i].text);
+      }
     }
 
     res.render('search', {tweets: statuses});
