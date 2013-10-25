@@ -56,9 +56,15 @@ input {
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: rgba(253, 253, 5, 0.64);
 }
 
 .red {
-  background-color: red;
+  background-color: rgba(233, 18, 18, 0.73);
+}
+.user-scores{
+  border: 1px solid red;
+  height: 50px;
+  margin-top: 15px;
+  margin-bottom: 25px;
 }
