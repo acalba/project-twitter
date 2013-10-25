@@ -1,14 +1,17 @@
 $(function() {
-  var $countdown = $("#countdown h2");
-  var $game = $("#game");
-  var $tweetList = $game.find("ul li");
-  var $typingArea = $("#typingArea");
-  var lineIndex = 0;
+  var
+    $countdown = $("#countdown h2"),
+    $game = $("#game"),
+    $tweetList = $game.find("ul li"),
+    $typingArea = $("#typingArea"),
+    lineIndex = 0,
+    $footer = $('.footer');
 
   function startRound(roundNumber) {
     var time = 1;
     $game.hide();
     $countdown.text(time);
+    $footer.hide()
 
     var timer = self.setInterval(function() {
       if (time > 0) {
@@ -18,6 +21,7 @@ $(function() {
         clearInterval(timer);
         $countdown.hide();
         $game.show();
+        $footer.show()
         highlightLine(lineIndex);
 
         $typingArea.keyup(function() {
@@ -33,11 +37,11 @@ $(function() {
   function highlightLine(index) {
     for (var i = 0; i < $tweetList.length; i++) {
       if (i === index) {
-        $($tweetList[i]).show();  
+        $($tweetList[i]).show();
       } else {
         $($tweetList[i]).hide();
       }
-      
+
     }
   }
 
