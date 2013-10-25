@@ -78,7 +78,7 @@ app.post('/save', function(req, res) {
     + req.body.data.speed + ', '
     + req.body.data.count_errors + ', "'
     + req.body.data.tweet + '");'
-  
+
   console.log(query_string);
 
   connection.connect();
@@ -97,28 +97,30 @@ app.post('/search', function (req, res) {
 
   var statuses = [];
 
-  T.get('search/tweets', { q: req.body.search + ' since:2013-01-01', count: 10, language: 'en'}, function(err, tweet) {
+  T.get('search/tweets', { q: req.body.search + ' since:2013-01-01', count: 10, lang: 'en'}, function(err, tweet) {
 
-    console.log(tweet);
     var list = tweet.statuses;
     for (var i = 0; i < list.length; i++) {
 
       // console.log("ORIGINAL: " + list[i].text);
 
-      var text = list[i].text.match(/[a-zA-Z0-9,.<>\\?!@#$%^&*()-=_+ "':;{}\[\]]*/, "");
+      var
+        text = list[i].text.match(/[a-zA-Z0-9,.<>\\?!@#$%^&*()-=_+ "':;{}\[\]]*/, ""),
+        twit_user = list[i].user.screen_name;
+
       if (text !== undefined) {
-        text = text.toString().replace(/(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/, "");  
+        text = text.toString().replace(/(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/, "");
       } else {
         break;
       }
-      
+      console.log('lang -->' + list[i].lang)
       text = text.toString().replace(/^\s+|\s+$/g, "");
 
       // console.log("WITHOUT WEIRD: " + text);
 
       if (text !== undefined && text.length > 10) {
-        statuses[i] = {text: text};
-       
+        statuses[i] = {text: text, screen_name: twit_user};
+
       }
       if (statuses[i] === undefined || statuses[i].length > 10) {
         statuses.splice(i,1);
