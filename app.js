@@ -53,7 +53,7 @@ app.get('/scores', function (req, res) {
   });
 
   connection.connect();
-  var query = connection.query('SELECT name, score FROM hackathon.scores ORDER BY score DESC LIMIT 10;', function(err, result) {
+  var query = connection.query('SELECT name, score, speed, accuracy, tweet FROM hackathon.scores ORDER BY score DESC LIMIT 10;', function(err, result) {
     if (err) throw err;
 
     connection.end();
