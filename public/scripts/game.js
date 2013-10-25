@@ -13,7 +13,7 @@ $(function() {
     return score;
   }
 
-  function insertScore()
+  function insertScore(name, round, score, speed, count_errors, tweet)
   {
     var mysql      = require('mysql');
     var connection = mysql.createConnection({
@@ -22,9 +22,11 @@ $(function() {
       password : 'onescreen',
     });
 
+    query_string = "INSERT INTO hackathon.scores VALUES (" + name + ", " + round + ", " + score + ", " + speed + ", " + count_errors + ", " + tweet + ");"
+
     connection.connect();
 
-    var query = connection.query('SELECT name, score FROM hackathon.scores ORDER BY score DESC LIMIT 10;', function(err, result) {
+    var query = connection.query(query_string, function(err, result) {
       if (err) throw err;
 
       console.log(result);
@@ -72,6 +74,8 @@ $(function() {
             count_errors = 5;
 
             final_score = calculateScore(tweet_length, wpm, count_errors);
+
+            insertScore(name, roundNumber, final_score, wpm, count_errors, $($tweetList[roundNumber]).text());
 
             console.log("Time: " + game_timer + " seconds.\nTyping Speed: " + wpm + " wpm");
             console.log("Tweet Length: " + tweet_length);
