@@ -43,6 +43,10 @@ app.get('/', function (req, res) {
     res.render('home');
 });
 
+app.get('/scores', function (req, res) {
+    res.render('scores');
+});
+
 app.use(express.bodyParser());
 
 app.post('/search', function (req, res) {
