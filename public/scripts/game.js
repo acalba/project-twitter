@@ -7,11 +7,11 @@ $(function() {
     var time = 1;
     $game.hide();
     $countdown.text(time);
-    
+
     var timer = self.setInterval(function() {
       if (time > 0) {
         time--;
-        $countdown.text(time);    
+        $countdown.text(time);
       } else {
         clearInterval(timer);
         $countdown.hide();
@@ -26,5 +26,5 @@ $(function() {
   }
 
   startRound();
-  
+
 });
