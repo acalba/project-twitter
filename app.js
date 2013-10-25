@@ -110,7 +110,7 @@ app.post('/search', function (req, res) {
         break;
       }
       
-      // text = text.toString().replace(/^\s+|\s+$/g, "");
+      text = text.toString().replace(/^\s+|\s+$/g, "");
 
       console.log("WITHOUT WEIRD: " + text);
 

@@ -6,6 +6,7 @@ $(function() {
     $typingArea = $("#typingArea"),
     $footer = $('.footer');
   var roundNumber = 1;
+  var roundLimit = 3;
 
   function calculateScore(length, speed, count_errors)
   {
@@ -114,7 +115,14 @@ $(function() {
             console.log("Total Score: " + final_score);
 
             roundNumber += 1;
-            startRound(roundNumber);
+
+            if (roundNumber > roundLimit) {
+              alert("Thank you for playing!");
+              window.location = "/";
+            } else {
+              startRound(roundNumber);
+            }
+
             // highlightLine(roundNumber);
           }
         });
