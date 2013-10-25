@@ -58,7 +58,7 @@ app.get('/scores', function (req, res) {
 
     connection.end();
     console.log(result)
-    res.render('scores', { scores : query.values});
+    res.render('scores', { scores : result});
   });
 
 });
