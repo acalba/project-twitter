@@ -20,24 +20,33 @@ $(function() {
 
   function insertScore(name, round, score, speed, count_errors, tweet)
   {
-    var mysql      = require('mysql');
-    var connection = mysql.createConnection({
-      host     : '10.101.100.95',
-      user     : 'hackathon_user',
-      password : 'onescreen',
+    uname = $('#user-name').text();
+    score = {
+      'name': uname,
+      'round': round,
+      'score': score,
+      'speed': speed,
+      'count_errors': count_errors,
+      'tweet': tweet
+    }
+    $.ajax({
+      url: "/save",
+      type: "POST",
+      data: {data: score},
+      complete: function() {
+        //called when complete
+        console.log('process complete');
+      },
+
+      success: function(data) {
+        console.log(data);
+        console.log('process sucess');
+     },
+
+      error: function() {
+        console.log('process error');
+      },
     });
-
-    query_string = "INSERT INTO hackathon.scores VALUES (" + name + ", " + round + ", " + score + ", " + speed + ", " + count_errors + ", " + tweet + ");"
-
-    connection.connect();
-
-    var query = connection.query(query_string, function(err, result) {
-      if (err) throw err;
-
-      console.log(result);
-    });
-
-    connection.end();
   }
 
   function startRound(roundNumber) {
@@ -85,7 +94,7 @@ $(function() {
           // console.log($tweetText.text());
           if ($(this).val() === $tweetText) {
             console.log("true!");
-            
+
             // calculate wpm
             var game_timer_stop = new Date().getTime();
             var game_timer = (game_timer_stop - game_timer_start) / 1000;
@@ -109,7 +118,7 @@ $(function() {
             // highlightLine(roundNumber);
           }
         });
-        
+
 
       }
     }, 1000);
@@ -126,5 +135,4 @@ $(function() {
   }
 
   startRound(roundNumber);
-
 });

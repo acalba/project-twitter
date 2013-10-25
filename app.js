@@ -63,6 +63,33 @@ app.get('/scores', function (req, res) {
 });
 
 app.use(express.bodyParser());
+app.post('/save', function(req, res) {
+  var mysql      = require('mysql');
+  var connection = mysql.createConnection({
+    host     : '10.101.100.95',
+    user     : 'hackathon_user',
+    password : 'onescreen',
+  });
+
+  query_string = "INSERT INTO hackathon.scores VALUES ("
+    + req.body.data.name + ", "
+    + req.body.data.round + ", "
+    + req.body.data.score + ", "
+    + req.body.data.speed + ", "
+    + req.body.data.count_errors + ", "
+    + req.body.data.tweet + ");"
+
+  connection.connect();
+
+  var query = connection.query(query_string, function(err, result) {
+    if (err) throw err;
+
+    console.log(result);
+  });
+
+  connection.end();
+  console.log(req.body.data.name);
+});
 
 app.post('/search', function (req, res) {
 
@@ -85,7 +112,7 @@ app.post('/search', function (req, res) {
       }
     }
 
-    res.render('search', {tweets: statuses});
+    res.render('search', {tweets: statuses, name: req.body.user_name});
   });
 
 });
