@@ -71,13 +71,15 @@ app.post('/save', function(req, res) {
     password : 'onescreen',
   });
 
-  query_string = "INSERT INTO hackathon.scores VALUES ("
-    + req.body.data.name + ", "
-    + req.body.data.round + ", "
-    + req.body.data.score + ", "
-    + req.body.data.speed + ", "
-    + req.body.data.count_errors + ", "
-    + req.body.data.tweet + ");"
+  query_string = 'INSERT INTO hackathon.scores VALUES ("'
+    + req.body.data.name + '", '
+    + req.body.data.round + ', '
+    + req.body.data.score + ', '
+    + req.body.data.speed + ', '
+    + req.body.data.count_errors + ', "'
+    + req.body.data.tweet + '");'
+  
+  console.log(query_string);
 
   connection.connect();
 
@@ -88,7 +90,7 @@ app.post('/save', function(req, res) {
   });
 
   connection.end();
-  console.log(req.body.data.name);
+  // console.log(req.body.data.name);
 });
 
 app.post('/search', function (req, res) {

@@ -10,11 +10,11 @@ $(function() {
   function calculateScore(length, speed, count_errors)
   {
     var score = (length / 140 * 250) + (2 * speed) - (0.5 * count_errors);
-    alert("Your score is " + Math.ceil(score) + "!\nTweet Length: " + length + " characters\nYour typing speed: " + speed + " wpm\nWrong characters typed: " + count_errors + " characters");
     if (score < 0)
     {
       score = 0; // avoid negative score due to typing errors
     }
+    alert("Your score is " + Math.ceil(score) + "!\nTweet Length: " + length + " characters\nYour typing speed: " + speed + " wpm\nWrong characters typed: " + count_errors + " characters");
     return score;
   }
 
@@ -106,7 +106,7 @@ $(function() {
 
             final_score = calculateScore(tweet_length, wpm, count_errors);
 
-            // insertScore(name, roundNumber, final_score, wpm, count_errors, $tweetText);
+            insertScore(name, roundNumber, final_score, wpm, count_errors, $tweetText);
 
             console.log("Time: " + game_timer + " seconds.\nTyping Speed: " + wpm + " wpm");
             console.log("Tweet Length: " + tweet_length);
