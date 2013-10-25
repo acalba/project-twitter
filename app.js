@@ -53,14 +53,14 @@ app.get('/scores', function (req, res) {
   });
 
   connection.connect();
-
   var query = connection.query('SELECT name, score FROM hackathon.scores ORDER BY score DESC LIMIT 10;', function(err, result) {
     if (err) throw err;
-    console.log(result);
-  });
-  connection.end();
 
-  res.render('scores', { scores : query.values});
+    connection.end();
+    console.log(result)
+    res.render('scores', { scores : query.values});
+  });
+
 });
 
 app.use(express.bodyParser());

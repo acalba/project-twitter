@@ -1,18 +1,21 @@
 <script src="/scripts/game.js"></script>
 <div id="countdown">
-  <h2></h2>
+  <h1></h1>
 </div>
 
 <div id="game">
 
   <h2 class="page-header">Round 1</h2>
-
-  <ul class="tweets-ul">
-  {{#each tweets}}
-    <li>{{text}}</li>
-  {{/each}}
-  </ul>
-
-  <input type="text" name"typingArea" id="typingArea" autofocus="autofocus" size="130">
-
+  <div class="search-tweets col-sm-8">
+    <ul class="tweets-ul">
+    {{#each tweets}}
+       <li>
+        <blockquote class="twitter">
+          <p>{{text}}<p>
+        </blockquote>
+      </li>
+    {{/each}}
+    </ul>
+  </div>
+  <input type="text" name"typingArea" id="typingArea" autofocus="autofocus" size="130" class="form-control">
 </div>

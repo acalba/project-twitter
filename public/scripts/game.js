@@ -1,5 +1,5 @@
 $(function() {
-  var $countdown = $("#countdown h2"),
+  var $countdown = $("#countdown h1"),
     $game = $("#game"),
     $tweetList = $game.find("ul li"),
     $typingArea = $("#typingArea"),
@@ -40,7 +40,7 @@ $(function() {
     $game.hide();
     $countdown.show();
     $countdown.text(time);
-    $game.find("h2").text("Round " + roundNumber);
+    $game.find("h1").text("Round " + roundNumber);
     $footer.hide()
     $typingArea.val("");
 
@@ -96,7 +96,7 @@ $(function() {
   function highlightLine(roundNumber) {
     for (var i = 0; i < $tweetList.length; i++) {
       if (i === roundNumber) {
-        $($tweetList[i]).show();  
+        $($tweetList[i]).show();
       } else {
         $($tweetList[i]).hide();
       }
